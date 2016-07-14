@@ -1,5 +1,11 @@
 var elixir = require('laravel-elixir');
 
+var gulp = require('gulp');
+
+var ext = require('gulp-ext-replace');
+
+var uglify = require('gulp-uglify');
+
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -11,6 +17,26 @@ var elixir = require('laravel-elixir');
  |
  */
 
+var Task = elixir.Task;
+
+elixir.extend('uglify', function() {
+
+	new Task('uglify', function() {
+		gulp.src('resources/assets/js/angular/*.js')
+        .pipe(uglify())
+        .pipe(ext('-min.js'))
+        .pipe(gulp.dest('resources/assets/js/app/apple.js'));
+	});	
+ 
+});
+
+
 elixir(function(mix) {
-    mix.sass('app.scss');
+    mix.uglify()
+    	.sass('app.scss')
+    	.scripts([
+    		'app/*.js',
+    		'angular/users/*.js'
+    	 ]);
+
 });
