@@ -1,3 +1,13 @@
 #ngLaravelCMS
 
-A starter project using LAravel and Angular (In Progress)
+A starter project using Laravel and Angular (In Progress)
+
+**Installation**
+
+```
+composer install
+```
+
+```
+npm install
+```
